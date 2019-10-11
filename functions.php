@@ -12,15 +12,15 @@
  * Enqueue styles
  */
 function twentytwenty_child_enqueue_styles() {
-	$parent_style = 'parent-style';
- 
-    wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
+    wp_enqueue_style( 'twentytwenty-style', get_template_directory_uri() . '/style.css' );
+    wp_style_add_data( 'twentytwenty-style', 'rtl', 'replace' );
 
     wp_enqueue_style( 'twenty-twenty-child-style',
         get_stylesheet_directory_uri() . '/style.css',
-        array( $parent_style ),
+        array( 'twentytwenty-style' ),
         wp_get_theme()->get('Version')
     );
+    wp_style_add_data( 'twenty-twenty-child-style', 'rtl', 'replace' );
 }
 
 add_action( 'wp_enqueue_scripts', 'twentytwenty_child_enqueue_styles' );
